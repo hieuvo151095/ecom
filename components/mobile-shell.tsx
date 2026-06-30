@@ -24,7 +24,7 @@ export function MobileShell() {
         height: 844,
         borderRadius: 48,
         boxShadow:
-          "0 0 0 10px #111, 0 0 0 12px #333, 0 40px 80px rgba(0,0,0,0.7)",
+          "0 0 0 10px #1a1a1a, 0 0 0 12px #2a2a2a, 0 40px 80px rgba(0,0,0,0.55)",
       }}
     >
       {/* Status Bar */}

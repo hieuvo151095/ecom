@@ -54,47 +54,47 @@ export function EcoSchoolHomepage({ onBack }: EcoSchoolHomepageProps) {
   const [activeTab, setActiveTab] = useState(0)
 
   return (
-    <div className="h-full flex flex-col bg-[#f0f0f0]">
+    <div className="h-full flex flex-col bg-[#f2f2f2]">
       {/* Hero Banner */}
-      <div className="relative bg-[#2a2a2a] pt-12 pb-5 px-5 overflow-hidden" style={{ minHeight: 160 }}>
+      <div className="relative bg-[#ebebeb] pt-12 pb-5 px-5 overflow-hidden" style={{ minHeight: 160 }}>
         {/* Decorative circles */}
-        <div className="absolute top-4 right-6 w-24 h-24 border border-white/10 rounded-full" />
-        <div className="absolute top-10 right-14 w-12 h-12 border border-white/10 rounded-full" />
-        <div className="absolute -top-4 left-20 w-32 h-32 border border-white/5 rounded-full" />
+        <div className="absolute top-4 right-6 w-24 h-24 border border-[#d0d0d0] rounded-full" />
+        <div className="absolute top-10 right-14 w-12 h-12 border border-[#d0d0d0] rounded-full" />
+        <div className="absolute -top-4 left-20 w-32 h-32 border border-[#d8d8d8] rounded-full" />
 
         {/* Top bar */}
         <div className="flex items-center justify-between mb-3">
           <button
             onClick={onBack}
-            className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center cursor-pointer hover:bg-white/25 transition-colors"
+            className="w-9 h-9 rounded-full bg-[#e0e0e0] flex items-center justify-center cursor-pointer hover:bg-[#d4d4d4] transition-colors"
           >
-            <ChevronLeft className="w-5 h-5 text-white" />
+            <ChevronLeft className="w-5 h-5 text-[#444]" />
           </button>
           <div className="text-center">
-            <p className="text-white text-sm font-bold">ECO School Phụ huynh</p>
+            <p className="text-[#1a1a1a] text-sm font-bold">ECO School Phụ huynh</p>
           </div>
-          <button className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center cursor-pointer hover:bg-white/25 transition-colors">
-            <HelpCircle className="w-5 h-5 text-white" />
+          <button className="w-9 h-9 rounded-full bg-[#e0e0e0] flex items-center justify-center cursor-pointer hover:bg-[#d4d4d4] transition-colors">
+            <HelpCircle className="w-5 h-5 text-[#444]" />
           </button>
         </div>
 
         {/* Banner image area */}
         <div className="flex items-center gap-3">
           <div className="flex-1">
-            <p className="text-white text-base font-black leading-tight">THẺ HỌC SINH</p>
-            <p className="text-white text-base font-black leading-tight">THÔNG MINH</p>
-            <p className="text-white/50 text-[9px] mt-1 uppercase tracking-wide">Bước tiến mới trong chuyển đổi số giáo dục</p>
+            <p className="text-[#1a1a1a] text-base font-black leading-tight">THẺ HỌC SINH</p>
+            <p className="text-[#1a1a1a] text-base font-black leading-tight">THÔNG MINH</p>
+            <p className="text-[#888] text-[9px] mt-1 uppercase tracking-wide">Bước tiến mới trong chuyển đổi số giáo dục</p>
           </div>
           {/* Mock phone illustration */}
           <div className="w-24 h-20 relative flex-shrink-0">
-            <div className="absolute right-0 w-16 h-20 bg-white/10 rounded-xl border border-white/20 flex flex-col items-center justify-center gap-1">
-              <div className="w-8 h-5 bg-white/20 rounded-sm" />
+            <div className="absolute right-0 w-16 h-20 bg-white rounded-xl border border-[#ddd] flex flex-col items-center justify-center gap-1 shadow-sm">
+              <div className="w-8 h-5 bg-[#e8e8e8] rounded-sm" />
               <div className="grid grid-cols-2 gap-0.5">
                 {[...Array(4)].map((_, i) => (
-                  <div key={i} className="w-3 h-3 bg-white/15 rounded" />
+                  <div key={i} className="w-3 h-3 bg-[#e0e0e0] rounded" />
                 ))}
               </div>
-              <p className="text-white/40 text-[6px]">ECO School</p>
+              <p className="text-[#aaa] text-[6px]">ECO School</p>
             </div>
           </div>
         </div>
@@ -110,17 +110,17 @@ export function EcoSchoolHomepage({ onBack }: EcoSchoolHomepageProps) {
                 key={item.id}
                 className="flex flex-col items-center gap-1.5 cursor-pointer group"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#1a1a1a] flex items-center justify-center group-hover:bg-[#333] transition-colors">
-                  <span className="text-white">{item.icon}</span>
+                <div className="w-12 h-12 rounded-full bg-[#f0f0f0] border border-[#e0e0e0] flex items-center justify-center group-hover:bg-[#e8e8e8] transition-colors">
+                  <span className="text-[#444]">{item.icon}</span>
                 </div>
-                <span className="text-[9px] text-[#444] font-medium text-center leading-tight">{item.label}</span>
+                <span className="text-[9px] text-[#555] font-medium text-center leading-tight">{item.label}</span>
               </button>
             ))}
           </div>
 
           {/* Pagination dots */}
           <div className="flex items-center justify-center gap-1.5 mt-3">
-            <div className="w-5 h-1.5 bg-[#1a1a1a] rounded-full" />
+            <div className="w-5 h-1.5 bg-[#888] rounded-full" />
             <div className="w-5 h-1.5 bg-[#ddd] rounded-full" />
           </div>
         </div>

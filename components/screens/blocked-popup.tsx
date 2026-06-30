@@ -23,7 +23,7 @@ export function BlockedPopup({ onClose }: BlockedPopupProps) {
         </p>
         <button
           onClick={onClose}
-          className="w-full py-4 bg-[#1a1a1a] text-white text-[15px] font-semibold rounded-2xl cursor-pointer hover:bg-[#333] transition-colors"
+          className="w-full py-4 bg-[#f0f0f0] border border-[#ddd] text-[#1a1a1a] text-[15px] font-semibold rounded-2xl cursor-pointer hover:bg-[#e8e8e8] transition-colors"
         >
           Thực hiện định danh
         </button>

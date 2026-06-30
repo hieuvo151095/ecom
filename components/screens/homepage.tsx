@@ -87,42 +87,42 @@ export function Homepage({ onIconClick }: HomepageProps) {
       <style>{`div::-webkit-scrollbar { display: none; }`}</style>
 
       {/* Hero Banner */}
-      <div className="relative bg-[#2a2a2a] pt-12 pb-6 px-5 overflow-hidden" style={{ minHeight: 200 }}>
+      <div className="relative bg-[#ebebeb] pt-12 pb-6 px-5 overflow-hidden" style={{ minHeight: 200 }}>
         {/* Decorative circles */}
-        <div className="absolute top-4 right-8 w-20 h-20 border border-white/10 rounded-full" />
-        <div className="absolute top-12 right-16 w-10 h-10 border border-white/10 rounded-full" />
-        <div className="absolute -top-4 left-24 w-28 h-28 border border-white/5 rounded-full" />
+        <div className="absolute top-4 right-8 w-20 h-20 border border-[#d0d0d0] rounded-full" />
+        <div className="absolute top-12 right-16 w-10 h-10 border border-[#d0d0d0] rounded-full" />
+        <div className="absolute -top-4 left-24 w-28 h-28 border border-[#d8d8d8] rounded-full" />
 
         {/* Top row */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-[#555] flex items-center justify-center border-2 border-[#888] cursor-pointer hover:bg-[#666]">
-              <User className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-full bg-[#d0d0d0] flex items-center justify-center border-2 border-[#bbb] cursor-pointer hover:bg-[#c4c4c4]">
+              <User className="w-5 h-5 text-[#555]" />
             </div>
             <div>
-              <p className="text-white text-sm font-semibold">Xin chào, Thanh</p>
-              <p className="text-white/60 text-[10px]">Chưa xác thực</p>
+              <p className="text-[#1a1a1a] text-sm font-semibold">Xin chào, Thanh</p>
+              <p className="text-[#888] text-[10px]">Chưa xác thực</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <button onClick={() => onIconClick("search")} className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20">
-              <Search className="w-4 h-4 text-white" />
+            <button onClick={() => onIconClick("search")} className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center cursor-pointer hover:bg-white/90">
+              <Search className="w-4 h-4 text-[#444]" />
             </button>
-            <button onClick={() => onIconClick("bell")} className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 relative">
-              <Bell className="w-4 h-4 text-white" />
-              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-white text-[#111] text-[8px] font-bold rounded-full flex items-center justify-center">29</span>
+            <button onClick={() => onIconClick("bell")} className="w-9 h-9 rounded-full bg-white/70 flex items-center justify-center cursor-pointer hover:bg-white/90 relative">
+              <Bell className="w-4 h-4 text-[#444]" />
+              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#1a1a1a] text-white text-[8px] font-bold rounded-full flex items-center justify-center">29</span>
             </button>
           </div>
         </div>
 
         {/* Hero text */}
         <div className="mb-2">
-          <p className="text-white text-lg font-black leading-tight">HỌC PHÍ ĐÚNG HẠN</p>
-          <p className="text-white/80 text-base font-bold leading-tight">AN TÂM ĐẾN TRƯỜNG</p>
-          <p className="text-white/50 text-xs mt-1">Hạn mức</p>
-          <p className="text-white text-2xl font-black">10.000.000đ</p>
+          <p className="text-[#1a1a1a] text-lg font-black leading-tight">HỌC PHÍ ĐÚNG HẠN</p>
+          <p className="text-[#333] text-base font-bold leading-tight">AN TÂM ĐẾN TRƯỜNG</p>
+          <p className="text-[#888] text-xs mt-1">Hạn mức</p>
+          <p className="text-[#1a1a1a] text-2xl font-black">10.000.000đ</p>
         </div>
-        <button onClick={() => onIconClick("dang-ky")} className="mt-1 px-4 py-1.5 bg-white text-[#111] text-xs font-bold rounded-full cursor-pointer hover:bg-white/90">
+        <button onClick={() => onIconClick("dang-ky")} className="mt-1 px-4 py-1.5 bg-[#1a1a1a] text-white text-xs font-bold rounded-full cursor-pointer hover:bg-[#333]">
           ĐĂNG KÝ NGAY
         </button>
       </div>
@@ -137,10 +137,10 @@ export function Homepage({ onIconClick }: HomepageProps) {
               onClick={() => onIconClick(item.id)}
               className="flex flex-col items-center gap-1.5 cursor-pointer group"
             >
-              <div className="w-12 h-12 rounded-2xl bg-[#1a1a1a] flex items-center justify-center group-hover:bg-[#333] transition-colors">
-                <span className="text-white">{item.icon}</span>
+              <div className="w-12 h-12 rounded-2xl bg-[#f0f0f0] border border-[#e0e0e0] flex items-center justify-center group-hover:bg-[#e8e8e8] transition-colors">
+                <span className="text-[#333]">{item.icon}</span>
               </div>
-              <span className="text-[10px] text-[#333] font-medium text-center leading-tight">{item.label}</span>
+              <span className="text-[10px] text-[#444] font-medium text-center leading-tight">{item.label}</span>
             </button>
           ))}
         </div>
@@ -196,12 +196,10 @@ export function Homepage({ onIconClick }: HomepageProps) {
               onClick={() => onIconClick(item.id)}
               className="flex flex-col items-center gap-2 cursor-pointer group"
             >
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center group-hover:opacity-80 transition-opacity ${
-                item.id === "eco-school" ? "bg-[#2a2a2a]" : "bg-[#1a1a1a]"
-              }`}>
-                <span className="text-white">{item.icon}</span>
+              <div className="w-14 h-14 rounded-2xl bg-[#f0f0f0] border border-[#e0e0e0] flex items-center justify-center group-hover:bg-[#e8e8e8] transition-colors">
+                <span className="text-[#333]">{item.icon}</span>
               </div>
-              <span className="text-[10px] text-[#333] font-medium text-center w-16 leading-tight">{item.label}</span>
+              <span className="text-[10px] text-[#444] font-medium text-center w-16 leading-tight">{item.label}</span>
             </button>
           ))}
         </div>
@@ -217,10 +215,10 @@ export function Homepage({ onIconClick }: HomepageProps) {
               onClick={() => onIconClick(item.id)}
               className="flex flex-col items-center gap-1.5 cursor-pointer group"
             >
-              <div className="w-12 h-12 rounded-2xl bg-[#1a1a1a] flex items-center justify-center group-hover:bg-[#333] transition-colors">
-                <span className="text-white">{item.icon}</span>
+              <div className="w-12 h-12 rounded-full bg-[#f0f0f0] border border-[#e0e0e0] flex items-center justify-center group-hover:bg-[#e8e8e8] transition-colors">
+                <span className="text-[#444]">{item.icon}</span>
               </div>
-              <span className="text-[9px] text-[#444] font-medium text-center leading-tight">{item.label}</span>
+              <span className="text-[9px] text-[#555] font-medium text-center leading-tight">{item.label}</span>
             </button>
           ))}
         </div>
@@ -236,10 +234,10 @@ export function Homepage({ onIconClick }: HomepageProps) {
               onClick={() => onIconClick(item.id)}
               className="flex flex-col items-center gap-1.5 cursor-pointer group"
             >
-              <div className="w-12 h-12 rounded-2xl bg-[#1a1a1a] flex items-center justify-center group-hover:bg-[#333] transition-colors">
-                <span className="text-white">{item.icon}</span>
+              <div className="w-12 h-12 rounded-full bg-[#f0f0f0] border border-[#e0e0e0] flex items-center justify-center group-hover:bg-[#e8e8e8] transition-colors">
+                <span className="text-[#444]">{item.icon}</span>
               </div>
-              <span className="text-[9px] text-[#444] font-medium text-center leading-tight">{item.label}</span>
+              <span className="text-[9px] text-[#555] font-medium text-center leading-tight">{item.label}</span>
             </button>
           ))}
         </div>
@@ -255,15 +253,15 @@ export function Homepage({ onIconClick }: HomepageProps) {
               onClick={() => onIconClick(item.id)}
               className="flex flex-col items-center gap-1.5 cursor-pointer group"
             >
-              <div className="relative w-12 h-12 rounded-2xl bg-[#1a1a1a] flex items-center justify-center group-hover:bg-[#333] transition-colors">
-                <span className="text-white">{item.icon}</span>
+              <div className="relative w-12 h-12 rounded-full bg-[#f0f0f0] border border-[#e0e0e0] flex items-center justify-center group-hover:bg-[#e8e8e8] transition-colors">
+                <span className="text-[#444]">{item.icon}</span>
                 {(item.id === "bh-xe-may" || item.id === "bh-o-to") && (
-                  <span className="absolute -top-1 -right-1 bg-[#555] text-white text-[7px] px-1 rounded-full">
+                  <span className="absolute -top-1 -right-1 bg-[#444] text-white text-[7px] px-1 rounded-full">
                     {item.id === "bh-xe-may" ? "-43%" : "-21%"}
                   </span>
                 )}
               </div>
-              <span className="text-[9px] text-[#444] font-medium text-center leading-tight">{item.label}</span>
+              <span className="text-[9px] text-[#555] font-medium text-center leading-tight">{item.label}</span>
             </button>
           ))}
         </div>
@@ -283,7 +281,7 @@ export function Homepage({ onIconClick }: HomepageProps) {
             <p className="text-xs font-semibold text-[#111]">Giảm 43% khi mua bảo hiểm xe...</p>
             <p className="text-[10px] text-[#888] mt-0.5">HSD: 31/12/2026</p>
           </div>
-          <button onClick={() => onIconClick("dung-ngay")} className="px-3 py-1.5 bg-[#1a1a1a] text-white text-[10px] font-bold rounded-lg cursor-pointer hover:bg-[#333] whitespace-nowrap">Dùng ngay</button>
+          <button onClick={() => onIconClick("dung-ngay")} className="px-3 py-1.5 bg-[#f0f0f0] border border-[#ddd] text-[#333] text-[10px] font-bold rounded-lg cursor-pointer hover:bg-[#e8e8e8] whitespace-nowrap">Dùng ngay</button>
         </div>
       </div>
 
@@ -319,8 +317,8 @@ export function Homepage({ onIconClick }: HomepageProps) {
                 <div className="h-20 bg-[#e0e0e0] flex items-center justify-center">
                   <Gift className="w-8 h-8 text-[#aaa]" />
                 </div>
-                <div className="absolute bottom-1 right-1 w-6 h-6 bg-[#1a1a1a] rounded-full flex items-center justify-center">
-                  <Plus className="w-3 h-3 text-white" />
+                <div className="absolute bottom-1 right-1 w-6 h-6 bg-white border border-[#ddd] rounded-full flex items-center justify-center">
+                  <Plus className="w-3 h-3 text-[#444]" />
                 </div>
               </div>
               <div className="p-2">
@@ -348,14 +346,14 @@ export function Homepage({ onIconClick }: HomepageProps) {
               <div className="relative h-24 bg-[#e0e0e0] flex items-center justify-center">
                 <Gift className="w-8 h-8 text-[#aaa]" />
                 <span className="absolute top-1 left-1 bg-[#444] text-white text-[8px] px-1 rounded">{item.discount}</span>
-                <div className="absolute bottom-1 right-1 w-6 h-6 bg-[#1a1a1a] rounded-full flex items-center justify-center">
-                  <Plus className="w-3 h-3 text-white" />
+                <div className="absolute bottom-1 right-1 w-6 h-6 bg-white border border-[#ddd] rounded-full flex items-center justify-center">
+                  <Plus className="w-3 h-3 text-[#444]" />
                 </div>
               </div>
               <div className="p-2">
                 <p className="text-[9px] text-[#333] font-medium leading-tight">{item.label}</p>
                 <p className="text-[8px] text-[#888] mt-0.5">Vé</p>
-                <p className="text-[10px] font-bold text-[#e74c3c] mt-0.5">{item.price}</p>
+                <p className="text-[10px] font-bold text-[#333] mt-0.5">{item.price}</p>
                 <p className="text-[8px] text-[#aaa] line-through">{item.original}</p>
               </div>
             </button>

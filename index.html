@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>ECO Me</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<!-- Demo toggle (desktop only) -->
+<div class="demo-controls">
+  <span class="demo-label">Demo:</span>
+  <button class="demo-btn active" id="btnVerified"   onclick="setVerified(true)">✓ Verified</button>
+  <button class="demo-btn"        id="btnUnverified" onclick="setVerified(false)">⚠ Unverified</button>
+</div>
+
+<!-- ─────────────────────────────────────────────────
+     DEVICE FRAME
+     ───────────────────────────────────────────────── -->
+<div class="device-wrapper">
+  <div class="device-phone">
+    <div class="device-screen">
+
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <span class="status-time" id="statusTime">14:56</span>
+        <div class="status-right">
+          <!-- Signal -->
+          <svg width="17" height="12" viewBox="0 0 17 12">
+            <rect x="0"    y="7" width="3" height="5" rx="1" fill="currentColor"/>
+            <rect x="4.5"  y="5" width="3" height="7" rx="1" fill="currentColor"/>
+            <rect x="9"    y="2" width="3" height="10" rx="1" fill="currentColor"/>
+            <rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/>
+          </svg>
+          <!-- WiFi -->
+          <svg width="16" height="12" viewBox="0 0 24 16">
+            <path d="M12 12l-3-3a4.5 4.5 0 016 0z" fill="currentColor"/>
+            <path d="M12 12L7 7a8 8 0 0110 0z" fill="currentColor" opacity=".5"/>
+            <path d="M12 12L2.5 2.5a14 14 0 0119 0z" fill="currentColor" opacity=".25"/>
+            <circle cx="12" cy="14" r="1.8" fill="currentColor"/>
+          </svg>
+          <!-- Battery -->
+          <svg width="26" height="13" viewBox="0 0 26 13">
+            <rect x=".5" y=".5" width="22" height="12" rx="2.5" stroke="currentColor" stroke-width="1" fill="none"/>
+            <rect x="23" y="4" width="3" height="5" rx="1.5" fill="currentColor" opacity=".4"/>
+            <rect x="2" y="2" width="18" height="9" rx="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ─── SCREENS WRAPPER ─── -->
+      <div class="screens-wrapper">
+
+        <!-- ══════════════════════════════════════════
+             TAB: TRANG CHỦ
+             ══════════════════════════════════════════ -->
+        <div class="screen active" id="screen-home">
+          <div class="screen-scroll">
+
+            <!-- Header -->
+            <div class="home-header">
+              <div class="header-left">
+                <div class="avatar" id="headerAvatar">H</div>
+                <span class="greeting-text" id="greetingText">Xin chào, Hieu Vo 👋</span>
+              </div>
+              <div class="header-icons" id="headerIcons"></div>
+            </div>
+
+            <!-- Hero Banner -->
+            <div class="hero-banner" id="heroBanner"></div>
+
+            <!-- Quick Actions + KYC + Wallet -->
+            <div class="section-card" style="padding-bottom:14px">
+              <div class="quick-actions">
+                <div class="quick-action" onclick="handleQuickAction('Nạp tiền')">
+                  <div class="qa-icon" style="background:#FFF3E0">💰</div>
+                  <span>Nạp tiền</span>
+                </div>
+                <div class="quick-action" onclick="handleQuickAction('Chuyển tiền')">
+                  <div class="qa-icon" style="background:#E3F2FD">💸</div>
+                  <span>Chuyển tiền</span>
+                </div>
+                <div class="quick-action" onclick="handleQuickAction('Rút tiền')">
+                  <div class="qa-icon" style="background:#E8F5E9">🏧</div>
+                  <span>Rút tiền</span>
+                </div>
+                <div class="quick-action" onclick="handleQuickAction('Mã thanh toán')">
+                  <div class="qa-icon" style="background:#F3E5F5">⊞</div>
+                  <span>Mã thanh toán</span>
+                </div>
+              </div>
+
+              <!-- KYC Banner (Unverified only) -->
+              <div class="kyc-banner" id="kycBanner" onclick="showToast('Chuyển sang màn hình định danh...')">
+                <div class="kyc-icon">⚠️</div>
+                <div class="kyc-text">
+                  Định danh người dùng theo quy định. Hoàn tất định danh và liên kết ví để hoàn tất thủ tục mới (Thông tư 40/TT-NHNN).
+                </div>
+                <div class="kyc-arrow">›</div>
+              </div>
+
+              <!-- Wallet Row -->
+              <div class="wallet-row">
+                <div class="wallet-item">
+                  <div class="wallet-label">
+                    <span class="wallet-eye">👁</span>
+                    <span>Ví ECO</span>
+                  </div>
+                  <div class="wallet-value" id="walletBalance">Kích hoạt ›</div>
+                </div>
+                <div class="wallet-divider"></div>
+                <div class="wallet-item">
+                  <div class="wallet-label">
+                    <span class="wallet-eye">👁</span>
+                    <span>ECO trả sau</span>
+                  </div>
+                  <div class="wallet-value wallet-action" id="walletCredit">Đăng ký ›</div>
+                </div>
+                <div class="wallet-divider"></div>
+                <div class="wallet-coin">
+                  <div class="coin-icon">🪙</div>
+                  <span>0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- EDU Shortcuts + Student Cards -->
+            <div class="section-card">
+              <div class="edu-shortcuts edu-3" id="eduShortcuts"></div>
+              <div id="studentCardsSection"></div>
+            </div>
+
+            <!-- Viễn Thông -->
+            <div class="section-card">
+              <div class="section-title">Viễn Thông</div>
+              <div class="service-grid">
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#FFF3E0">📱</div>
+                  <span>Nạp tiền điện thoại</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#FBE9E7">🎴</div>
+                  <span>Mã thẻ cào điện thoại</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#E8F5E9">📡</div>
+                  <span>Nạp data 4G/5G</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#E3F2FD">💵</div>
+                  <span>Thanh toán trả sau</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tiện ích -->
+            <div class="section-card">
+              <div class="section-title">Tiện ích</div>
+              <div class="service-grid">
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#FFF9C4">⚡</div>
+                  <span>Hóa đơn tiền điện</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#E1F5FE">💧</div>
+                  <span>Hóa đơn tiền nước</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#EDE7F6">🌐</div>
+                  <span>Hóa đơn Internet</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#FCE4EC">💳</div>
+                  <span>Thanh toán tín dụng</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#FFF8E1">🏅</div>
+                  <span>EXu Back</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#E8F5E9">🏦</div>
+                  <span>Mở TK VPBank</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#E0F2F1">💼</div>
+                  <span>Tài chính thu hộ</span>
+                </div>
+                <div class="service-item" onclick="showToast('Xem thêm tiện ích...')">
+                  <div class="svc-icon" style="background:#f5f5f5;font-size:20px;color:#999">···</div>
+                  <span>Xem thêm</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bảo hiểm -->
+            <div class="section-card">
+              <div class="section-title">Bảo hiểm</div>
+              <div class="insurance-grid">
+                <div class="ins-item">
+                  <div class="ins-badge">-43%</div>
+                  <div class="ins-icon">🏍</div>
+                  <span>Bảo hiểm xe máy</span>
+                </div>
+                <div class="ins-item">
+                  <div class="ins-badge">-21%</div>
+                  <div class="ins-icon">🚗</div>
+                  <span>Bảo hiểm Ô tô</span>
+                </div>
+                <div class="ins-item">
+                  <div class="ins-icon">🛡</div>
+                  <span>Dịch vụ bảo hiểm</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ưu đãi -->
+            <div class="section-card">
+              <div class="section-header-row">
+                <span class="section-title" style="margin-bottom:0">Ưu đãi dành riêng bạn</span>
+                <span class="section-more">Xem thêm</span>
+              </div>
+              <div style="margin-top:12px">
+                <div class="voucher-card">
+                  <div class="voucher-icon">🏍</div>
+                  <div class="voucher-content">
+                    <div class="voucher-title">Giảm 43% khi mua bảo hiểm xe máy</div>
+                    <div class="voucher-exp">HSD: 31/12/2026</div>
+                  </div>
+                  <button class="btn-use">Dùng ngay</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Đối tác -->
+            <div class="section-card">
+              <div class="section-title">Đối tác thương hiệu</div>
+              <div class="partners-row">
+                <div class="partner-logo" style="color:#c0392b;font-size:11px">STP</div>
+                <div class="partner-logo" style="color:#e67e22">giftpop</div>
+                <div class="partner-logo" style="color:#8e44ad">vietopia</div>
+              </div>
+            </div>
+
+            <!-- Deal: Mầm Non -->
+            <div class="section-card">
+              <div class="section-header-row">
+                <div>
+                  <div class="deal-title">SIÊU DEAL CHO KHỐI MẦM NON</div>
+                </div>
+                <span class="section-more">Xem thêm</span>
+              </div>
+              <div class="deal-scroll">
+                <div class="deal-card">
+                  <div class="deal-img" style="background:linear-gradient(135deg,#667eea,#764ba2)">🏰</div>
+                  <div class="deal-info">
+                    <div class="deal-name">Vé Cổng Ký Quan (Cổng Vi...)</div>
+                    <div class="deal-type">Vé</div>
+                    <div class="deal-price">120,000đ</div>
+                  </div>
+                  <button class="btn-add">+</button>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-img" style="background:linear-gradient(135deg,#43cea2,#185a9d)">🌊</div>
+                  <div class="deal-info">
+                    <div class="deal-name">Combo "Blue Wave - Biển Ti..."</div>
+                    <div class="deal-type">Vé</div>
+                    <div class="deal-price">200,000đ</div>
+                  </div>
+                  <button class="btn-add">+</button>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-img" style="background:linear-gradient(135deg,#f093fb,#f5576c)">🌳</div>
+                  <div class="deal-info">
+                    <div class="deal-name">Combo "Bassic Tour - Trải ngh..."</div>
+                    <div class="deal-type">Vé</div>
+                    <div class="deal-price">135,000đ</div>
+                  </div>
+                  <button class="btn-add">+</button>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-img" style="background:linear-gradient(135deg,#f8f9fa,#dee2e6)">🎪</div>
+                  <div class="deal-info">
+                    <div class="deal-name">(Giftpop) Vé tham quan Th...</div>
+                    <div class="deal-type">E-Voucher</div>
+                    <div class="deal-price">—</div>
+                  </div>
+                  <button class="btn-add">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deal: Vietopia -->
+            <div class="section-card">
+              <div class="section-header-row">
+                <div>
+                  <div class="deal-title">VIETOPIA</div>
+                  <div class="deal-subtitle">Khu vui chơi hướng nghiệp</div>
+                </div>
+                <span class="section-more">Xem thêm</span>
+              </div>
+              <div class="deal-scroll">
+                <div class="deal-card">
+                  <div class="deal-img" style="background:linear-gradient(135deg,#FDDB92,#D1FAFF)">
+                    🎡
+                    <span class="discount-badge">-14%</span>
+                  </div>
+                  <div class="deal-info">
+                    <div class="deal-name">Vé vui chơi cả ngày dành cho trẻ</div>
+                    <div class="deal-type">Vé</div>
+                    <div class="deal-price">240,000đ <s>280,000đ</s></div>
+                  </div>
+                  <button class="btn-add">+</button>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-img" style="background:linear-gradient(135deg,#a1c4fd,#c2e9fb)">
+                    🎠
+                    <span class="discount-badge">-12%</span>
+                  </div>
+                  <div class="deal-info">
+                    <div class="deal-name">Vé vui chơi cả ngày dành cho người lớn</div>
+                    <div class="deal-type">Vé</div>
+                    <div class="deal-price">285,000đ <s>325,000đ</s></div>
+                  </div>
+                  <button class="btn-add">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deal: Winsmile -->
+            <div class="section-card">
+              <div class="section-header-row">
+                <div>
+                  <div class="deal-title">WINSMILE</div>
+                  <div class="deal-subtitle">Dịch vụ nha khoa</div>
+                </div>
+                <span class="section-more">Xem thêm</span>
+              </div>
+              <div class="deal-scroll">
+                <div class="deal-card">
+                  <div class="deal-img" style="background:#f8f9fa">
+                    🦷
+                    <span class="discount-badge">-41%</span>
+                  </div>
+                  <div class="deal-info">
+                    <div class="deal-name">Combo nhổ răng sữa không đau</div>
+                    <div class="deal-type">Lần</div>
+                    <div class="deal-price">59,000đ <s>100,000đ</s></div>
+                  </div>
+                  <button class="btn-add">+</button>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-img" style="background:linear-gradient(135deg,#ffecd2,#fcb69f)">
+                    🦷
+                    <span class="discount-badge">-51%</span>
+                  </div>
+                  <div class="deal-info">
+                    <div class="deal-name">Dịch vụ hàn sâu cho trẻ em</div>
+                    <div class="deal-type">Lần</div>
+                    <div class="deal-price">99,000đ <s>200,000đ</s></div>
+                  </div>
+                  <button class="btn-add">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deal: Kyna English -->
+            <div class="section-card">
+              <div class="section-header-row">
+                <div>
+                  <div class="deal-title">KYNA ENGLISH</div>
+                  <div class="deal-subtitle">Giảm 50% học phí</div>
+                </div>
+                <span class="section-more">Xem thêm</span>
+              </div>
+              <div class="deal-scroll">
+                <div class="deal-card">
+                  <div class="deal-img" style="background:linear-gradient(135deg,#1e3c72,#2a5298)">
+                    📚
+                    <span class="discount-badge">-50%</span>
+                  </div>
+                  <div class="deal-info">
+                    <div class="deal-name">Lớp học tiếng Anh online 3 tháng</div>
+                    <div class="deal-type">Khóa học</div>
+                    <div class="deal-price">499,000đ <s>998,000đ</s></div>
+                  </div>
+                  <button class="btn-add">+</button>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-img" style="background:linear-gradient(135deg,#2193b0,#6dd5ed)">
+                    🗣
+                    <span class="discount-badge">-50%</span>
+                  </div>
+                  <div class="deal-info">
+                    <div class="deal-name">Gói Speaking 1 tháng</div>
+                    <div class="deal-type">Khóa học</div>
+                    <div class="deal-price">199,000đ <s>398,000đ</s></div>
+                  </div>
+                  <button class="btn-add">+</button>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.screen-scroll -->
+        </div><!-- /#screen-home -->
+
+        <!-- ══════════════════════════════════════════
+             TAB: MUA SẮM
+             ══════════════════════════════════════════ -->
+        <div class="screen" id="screen-shopping">
+          <div class="screen-scroll placeholder-screen">
+            <div class="placeholder-icon">🛍</div>
+            <div class="placeholder-title">Mua sắm</div>
+            <div class="placeholder-desc">Màn hình này chưa có dữ liệu trong ảnh tham khảo hiện tại</div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             TAB: THANH TOÁN
+             ══════════════════════════════════════════ -->
+        <div class="screen" id="screen-payment">
+          <div class="screen-scroll placeholder-screen">
+            <div class="placeholder-icon" style="font-size:44px;background:var(--primary);width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;opacity:1">🏦</div>
+            <div class="placeholder-title">Thanh toán</div>
+            <div class="placeholder-desc">Màn hình này chưa có dữ liệu trong ảnh tham khảo hiện tại</div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             TAB: ĐƠN HÀNG
+             ══════════════════════════════════════════ -->
+        <div class="screen" id="screen-orders">
+          <div class="screen-scroll placeholder-screen">
+            <div class="placeholder-icon">📋</div>
+            <div class="placeholder-title">Đơn hàng</div>
+            <div class="placeholder-desc">Màn hình này chưa có dữ liệu trong ảnh tham khảo hiện tại</div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             TAB: VÍ CỦA TÔI
+             ══════════════════════════════════════════ -->
+        <div class="screen" id="screen-wallet-tab">
+          <div class="screen-scroll placeholder-screen">
+            <div class="placeholder-icon">👜</div>
+            <div class="placeholder-title">Ví của tôi</div>
+            <div class="placeholder-desc">Màn hình này chưa có dữ liệu trong ảnh tham khảo hiện tại</div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             PUSH SCREEN: ECO SCHOOL ENTRY
+             ══════════════════════════════════════════ -->
+        <div class="screen push-screen" id="screen-eco-entry">
+          <!-- Back button overlaid on brand banner -->
+          <div class="eco-back-overlay">
+            <button class="back-btn" onclick="popScreen()">←</button>
+          </div>
+
+          <div class="screen-scroll" style="padding:0">
+            <!-- Brand Banner -->
+            <div class="eco-brand-banner">
+              <div class="eco-brand-title">THẺ HỌC SINH THÔNG MINH</div>
+              <div class="eco-brand-sub">Bước tiến mới trong chuyển đổi số giáo dục</div>
+              <div class="eco-brand-illustration">
+                <div class="card-mock">
+                  <div class="card-mock-logo">ECO</div>
+                  <div class="card-mock-qr">⬛</div>
+                </div>
+                <div class="phone-mock">📱</div>
+              </div>
+            </div>
+
+            <!-- Instructions + CTAs -->
+            <div class="eco-entry-body">
+              <div class="eco-instructions-title">
+                Quét hoặc nhập thông tin học sinh để liên kết
+              </div>
+              <div class="eco-steps">
+                <div class="eco-step">
+                  <div class="step-num step-1">①</div>
+                  <div class="step-text">Nhập mã học sinh và mã bảo vệ hoặc quét mã QR trên thẻ</div>
+                </div>
+                <div class="eco-step">
+                  <div class="step-num step-2">②</div>
+                  <div class="step-text">Kiểm tra thông tin học sinh</div>
+                </div>
+                <div class="eco-step">
+                  <div class="step-num step-3">③</div>
+                  <div class="step-text">Nhấn "Xác nhận"</div>
+                </div>
+              </div>
+
+              <button class="btn-primary" id="btnQR" onclick="simulateQR(this)">Quét mã QR</button>
+              <button class="btn-secondary" style="margin-top:12px" onclick="showModal('modal-link-student')">Nhập thông tin</button>
+
+              <div class="eco-reissue">
+                Bạn làm hỏng, mất thẻ, <a href="#" class="link-yellow" onclick="return false">Cấp lại thẻ</a>
+              </div>
+            </div>
+          </div>
+        </div><!-- /#screen-eco-entry -->
+
+        <!-- ══════════════════════════════════════════
+             PUSH SCREEN: ECO SCHOOL DASHBOARD
+             ══════════════════════════════════════════ -->
+        <div class="screen push-screen" id="screen-eco-dash">
+          <!-- Fixed header bar -->
+          <div class="eco-dash-header">
+            <button class="back-btn" onclick="popScreen()">←</button>
+            <span class="eco-dash-title">ECO School Phụ huynh</span>
+            <div class="eco-dash-help">?</div>
+          </div>
+
+          <!-- Scrollable content -->
+          <div class="screen-scroll" style="padding:0;overflow-y:auto;flex:1">
+
+            <!-- Mini brand banner -->
+            <div class="eco-dash-brand">
+              <div class="eco-brand-title" style="font-size:17px;margin-bottom:2px">THẺ HỌC SINH THÔNG MINH</div>
+              <div class="eco-brand-sub" style="font-size:11px;margin-bottom:0">Bước tiến mới trong chuyển đổi số giáo dục</div>
+            </div>
+
+            <!-- 8 function icons -->
+            <div class="section-card">
+              <div class="service-grid">
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#E3F2FD">🎓</div>
+                  <span>Đóng học phí</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#FFF8E1">⭐</div>
+                  <span>Nạp điểm vào thẻ</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#E8F5E9">📊</div>
+                  <span>Lịch sử chi tiêu</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#FFF3E0">📅</div>
+                  <span>Thời khoá biểu</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#EDE7F6">📌</div>
+                  <span>Theo dõi điểm danh</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#FCE4EC">🔔</div>
+                  <span>Báo vắng</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#E1F5FE">📚</div>
+                  <span>Bài tập</span>
+                </div>
+                <div class="service-item">
+                  <div class="svc-icon" style="background:#F3E5F5">🏆</div>
+                  <span>Kết quả học tập</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Student List -->
+            <div class="section-card" style="padding-bottom:8px">
+              <div class="section-title">Danh sách học sinh</div>
+              <div class="student-card">
+                <div class="student-avatar">TK</div>
+                <div class="student-info">
+                  <div class="student-name">Trần Đăng Khoa</div>
+                  <div class="student-id">9192930072</div>
+                  <div class="student-meta">
+                    <div>
+                      <span class="meta-label">Trường</span>
+                      <span class="meta-val">Trường FINVIET</span>
+                    </div>
+                    <div>
+                      <span class="meta-label">Lớp</span>
+                      <span class="meta-val">Lớp 10A1</span>
+                    </div>
+                  </div>
+                  <div class="student-balance">Số dư thẻ: <strong>0 điểm</strong></div>
+                  <div class="student-alert">
+                    <span>🟠 1 hóa đơn chờ thanh toán</span>
+                    <a href="#" class="link-pay" onclick="showToast('Chuyển đến thanh toán...');return false">Thanh toán</a>
+                  </div>
+                </div>
+              </div>
+              <div class="student-card">
+                <div class="student-avatar">PV</div>
+                <div class="student-info">
+                  <div class="student-name">Phan Khánh Vy</div>
+                  <div class="student-id">9192930059</div>
+                  <div class="student-meta">
+                    <div>
+                      <span class="meta-label">Trường</span>
+                      <span class="meta-val">Trường FINVIET</span>
+                    </div>
+                    <div>
+                      <span class="meta-label">Lớp</span>
+                      <span class="meta-val">Lớp 9B2</span>
+                    </div>
+                  </div>
+                  <div class="student-balance">Số dư thẻ: <strong>150 điểm</strong></div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.screen-scroll -->
+        </div><!-- /#screen-eco-dash -->
+
+      </div><!-- /.screens-wrapper -->
+
+      <!-- ─────────────────────────────────────────────
+           MODALS (absolute, z-index above screens)
+           ───────────────────────────────────────────── -->
+
+      <!-- Modal: Ví Tạm Khóa -->
+      <div class="modal-overlay" id="modal-wallet-locked">
+        <div class="modal-card">
+          <div class="modal-icon">🔒</div>
+          <div class="modal-title">Ví của bạn đang tạm khóa</div>
+          <div class="modal-desc">
+            Bạn chưa thực hiện định danh và liên kết ngân hàng. Để sử dụng các giao dịch từ Ví, bạn cần định danh và liên kết ngân hàng ngay
+          </div>
+          <button class="btn-primary" onclick="hideModal('modal-wallet-locked');showToast('Chuyển đến định danh...')">
+            Thực hiện định danh
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal: Kích hoạt liên kết học sinh (bottom sheet) -->
+      <div class="modal-overlay bottom-sheet-overlay" id="modal-link-student" onclick="handleSheetBackdrop(event)">
+        <div class="bottom-sheet">
+          <div class="sheet-header">
+            <div class="sheet-title">Kích hoạt liên kết học sinh</div>
+            <button class="sheet-close" onclick="hideModal('modal-link-student')">✕</button>
+          </div>
+          <div class="sheet-body">
+            <div class="sheet-note">
+              Vui lòng liên hệ Hotline <strong>1900 9005</strong> để được hỗ trợ cung cấp mã bảo vệ
+            </div>
+            <input
+              class="sheet-input"
+              type="text"
+              id="inputStudentId"
+              placeholder="Mã học sinh"
+              autocomplete="off"
+            >
+            <input
+              class="sheet-input"
+              type="text"
+              id="inputStudentPwd"
+              placeholder="Mã bảo vệ"
+              autocomplete="off"
+            >
+            <button
+              class="btn-primary"
+              id="btnConfirmLink"
+              disabled
+              onclick="confirmLink()"
+            >
+              Xác nhận
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast notification -->
+      <div id="toast" style="
+        position:absolute;
+        bottom:90px;
+        left:50%;
+        transform:translateX(-50%) translateY(10px);
+        background:rgba(0,0,0,.75);
+        color:#fff;
+        font-size:12px;
+        padding:8px 18px;
+        border-radius:20px;
+        white-space:nowrap;
+        opacity:0;
+        transition:opacity .2s, transform .2s;
+        pointer-events:none;
+        z-index:999;
+        backdrop-filter:blur(4px);
+      "></div>
+
+      <!-- ─── BOTTOM NAV ─── -->
+      <nav class="bottom-nav">
+        <div class="nav-item active" data-screen="home" onclick="switchTab('home', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Trang chủ</span>
+        </div>
+        <div class="nav-item" data-screen="shopping" onclick="switchTab('shopping', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span>Mua sắm</span>
+        </div>
+        <div class="nav-item nav-center" data-screen="payment" onclick="switchTab('payment', this)">
+          <div class="nav-center-btn">
+            <svg viewBox="0 0 60 60" fill="none">
+              <circle cx="30" cy="30" r="30" fill="#fff"/>
+              <text x="30" y="38" text-anchor="middle" fill="#FFB800" font-size="13" font-weight="900" font-family="system-ui">ECO</text>
+            </svg>
+          </div>
+          <span>Thanh toán</span>
+        </div>
+        <div class="nav-item" data-screen="orders" onclick="switchTab('orders', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          <span>Đơn hàng</span>
+        </div>
+        <div class="nav-item" data-screen="wallet-tab" onclick="switchTab('wallet-tab', this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="1" y="4" width="22" height="16" rx="2"/>
+            <path d="M1 10h22"/>
+            <circle cx="16" cy="15" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+          <span>Ví của tôi</span>
+        </div>
+      </nav>
+
+    </div><!-- /.device-screen -->
+  </div><!-- /.device-phone -->
+</div><!-- /.device-wrapper -->
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════════ -->
+<script>
+/* ─── State ─────────────────────────────────────────── */
+const state = {
+  isVerified: true,
+  screenStack: [],
+};
+
+const mockStudents = [
+  { initials:'TK', name:'Trần Đăng Khoa',  id:'9192930072', school:'Trường FINVIET', grade:'Lớp 10A1', balance:0,   bills:1 },
+  { initials:'PV', name:'Phan Khánh Vy',    id:'9192930059', school:'Trường FINVIET', grade:'Lớp 9B2',  balance:150, bills:0 },
+];
+
+/* ─── Init ───────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  updateClock();
+  setInterval(updateClock, 20000);
+  renderState();
+  setupInputListeners();
+});
+
+/* ─── Clock ──────────────────────────────────────────── */
+function updateClock() {
+  const n = new Date();
+  const h = String(n.getHours()).padStart(2,'0');
+  const m = String(n.getMinutes()).padStart(2,'0');
+  document.getElementById('statusTime').textContent = h + ':' + m;
+}
+
+/* ─── Verified toggle ────────────────────────────────── */
+function setVerified(v) {
+  state.isVerified = v;
+  document.getElementById('btnVerified').classList.toggle('active', v);
+  document.getElementById('btnUnverified').classList.toggle('active', !v);
+  renderState();
+}
+
+/* ─── Full state render ──────────────────────────────── */
+function renderState() {
+  const v = state.isVerified;
+
+  // Avatar
+  const av = document.getElementById('headerAvatar');
+  av.textContent = v ? 'H' : 'T';
+  av.className   = 'avatar' + (v ? ' verified' : '');
+
+  // Greeting
+  document.getElementById('greetingText').textContent =
+    v ? 'Xin chào, Hieu Vo 👋' : 'Xin chào, Thanh 👋';
+
+  // Header icons
+  document.getElementById('headerIcons').innerHTML = v
+    ? `<div class="notif-wrap"><button class="hdr-btn">⚙️</button></div>
+       <button class="hdr-btn">🔍</button>
+       <div class="notif-wrap">
+         <button class="hdr-btn">🔔</button>
+         <span class="notif-badge">1</span>
+       </div>`
+    : `<button class="hdr-btn">🔍</button>
+       <div class="notif-wrap">
+         <button class="hdr-btn">🔔</button>
+         <span class="notif-badge">29</span>
+       </div>`;
+
+  // Hero
+  renderHero(v);
+
+  // KYC banner
+  document.getElementById('kycBanner').style.display = v ? 'none' : 'flex';
+
+  // Wallet
+  const bal = document.getElementById('walletBalance');
+  bal.textContent = v ? '344,523đ' : 'Kích hoạt ›';
+  bal.className   = 'wallet-value' + (v ? ' wallet-primary' : ' wallet-action');
+
+  // ECO trả sau
+  const credit = document.getElementById('walletCredit');
+  credit.textContent = v ? '0đ' : 'Đăng ký ›';
+  credit.className   = 'wallet-value' + (v ? '' : ' wallet-action');
+
+  // EDU shortcuts
+  renderEduShortcuts(v);
+
+  // Student cards on home
+  renderHomeStudentCards(v);
+}
+
+/* ─── Hero banner ────────────────────────────────────── */
+function renderHero(v) {
+  const el = document.getElementById('heroBanner');
+  if (v) {
+    el.style.background = 'linear-gradient(135deg, #1565C0 0%, #1976D2 55%, #0288D1 100%)';
+    el.innerHTML = `
+      <div class="hero-text">
+        <div class="hero-tag">Tranh thủ hè này</div>
+        <div class="hero-headline"><strong>BẮT ĐẦU VỚI<br>1 THÁNG HỌC TIẾNG ANH MIỄN PHÍ</strong></div>
+        <div class="hero-sub">Dành cho từ 13–23 tuổi</div>
+        <button class="btn-hero">ĐĂNG KÝ NGAY</button>
+      </div>
+      <div class="hero-side">
+        <div class="hero-illus">🎓</div>
+      </div>`;
+  } else {
+    el.style.background = 'linear-gradient(135deg, #FF8C00 0%, #FFB800 55%, #FFD740 100%)';
+    el.innerHTML = `
+      <div class="hero-text">
+        <div class="hero-headline"><strong>HỌC PHÍ ĐÚNG HẠN</strong><br>AN TÂM ĐẾN TRƯỜNG</div>
+        <div class="hero-sub">Hạn mức</div>
+        <div class="hero-amount">10.000.000đ</div>
+        <button class="btn-hero">ĐĂNG KÝ NGAY</button>
+      </div>
+      <div class="hero-side">
+        <div class="hero-badge">
+          <div>📱</div>
+          <div>DỊCH VỤ MỚI</div>
+        </div>
+      </div>`;
+  }
+}
+
+/* ─── EDU shortcuts ──────────────────────────────────── */
+function renderEduShortcuts(v) {
+  const el = document.getElementById('eduShortcuts');
+  el.className = 'edu-shortcuts ' + (v ? 'edu-4' : 'edu-3');
+
+  let html = `
+    <div class="edu-item">
+      <div class="edu-icon" style="background:#E3F2FD">🎓</div>
+      <span>Đóng Học Phí</span>
+    </div>
+    <div class="edu-item">
+      <div class="edu-icon" style="background:#FFF3E0">💳</div>
+      <span>Học phí trả sau</span>
+    </div>
+    <div class="edu-item" onclick="pushScreen('screen-eco-entry')">
+      <div class="edu-icon" style="background:#E0F2F1">🏫</div>
+      <span>ECO School</span>
+    </div>`;
+
+  if (v) {
+    html += `
+    <div class="edu-item">
+      <div class="edu-icon" style="background:#E8F5E9">👨‍🏫</div>
+      <span>ECO Giáo viên</span>
+    </div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+/* ─── Home student cards (Verified only) ─────────────── */
+function renderHomeStudentCards(v) {
+  const section = document.getElementById('studentCardsSection');
+  if (!v) { section.innerHTML = ''; return; }
+
+  section.innerHTML = mockStudents.map(s => `
+    <div class="home-student-card">
+      <div class="hsc-avatar">${s.initials}</div>
+      <div class="hsc-body">
+        <div class="hsc-name">${s.name}</div>
+        <div class="hsc-id">${s.id}</div>
+        <div class="hsc-row">
+          <span class="hsc-label">Trường</span>
+          <span class="hsc-val">${s.school}</span>
+        </div>
+        <div class="hsc-row">
+          <span class="hsc-label">Lớp</span>
+          <span class="hsc-val">${s.grade}</span>
+        </div>
+        <div class="hsc-row">
+          <span class="hsc-label">Số dư thẻ</span>
+          <span class="hsc-val">${s.balance} điểm</span>
+        </div>
+        ${s.bills ? `<div style="font-size:11px;color:#FF8C00;margin-top:4px;display:flex;justify-content:space-between">
+          <span>🟠 ${s.bills} hóa đơn chờ thanh toán</span>
+          <span onclick="pushScreen('screen-eco-dash')" style="color:var(--primary-dark);font-weight:700;cursor:pointer">Thanh toán</span>
+        </div>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+/* ─── Tab switching ──────────────────────────────────── */
+function switchTab(tabId, el) {
+  // Close any push screens first
+  [...state.screenStack].reverse().forEach(id => {
+    document.getElementById(id).classList.remove('visible');
+  });
+  state.screenStack = [];
+
+  // Deactivate all tab screens and nav items
+  document.querySelectorAll('.screen:not(.push-screen)').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  // Activate target
+  document.getElementById('screen-' + tabId).classList.add('active');
+  el.classList.add('active');
+}
+
+/* ─── Push navigation ────────────────────────────────── */
+function pushScreen(screenId) {
+  state.screenStack.push(screenId);
+  const screen = document.getElementById(screenId);
+  screen.style.zIndex = 10 + state.screenStack.length;
+  requestAnimationFrame(() => screen.classList.add('visible'));
+}
+
+function popScreen() {
+  if (!state.screenStack.length) return;
+  const screenId = state.screenStack.pop();
+  const screen = document.getElementById(screenId);
+  screen.classList.remove('visible');
+  setTimeout(() => { screen.style.zIndex = ''; }, 360);
+}
+
+/* ─── Modals ─────────────────────────────────────────── */
+function showModal(id) {
+  document.getElementById(id).classList.add('active');
+}
+function hideModal(id) {
+  document.getElementById(id).classList.remove('active');
+  // Clear inputs if link student modal
+  if (id === 'modal-link-student') {
+    document.getElementById('inputStudentId').value = '';
+    document.getElementById('inputStudentPwd').value = '';
+    document.getElementById('btnConfirmLink').disabled = true;
+  }
+}
+function handleSheetBackdrop(e) {
+  if (e.target === e.currentTarget) hideModal('modal-link-student');
+}
+
+/* ─── Quick action handler ───────────────────────────── */
+function handleQuickAction(name) {
+  if (!state.isVerified) {
+    showModal('modal-wallet-locked');
+  } else {
+    showToast(name + ' — đang phát triển');
+  }
+}
+
+/* ─── QR simulation ──────────────────────────────────── */
+function simulateQR(btn) {
+  btn.textContent = '📷 Đang quét...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Quét mã QR';
+    btn.disabled = false;
+    // Navigate: pop entry, then push dashboard
+    popScreen();
+    setTimeout(() => pushScreen('screen-eco-dash'), 340);
+  }, 1200);
+}
+
+/* ─── Confirm link ───────────────────────────────────── */
+function confirmLink() {
+  const id  = document.getElementById('inputStudentId').value.trim();
+  const pwd = document.getElementById('inputStudentPwd').value.trim();
+  if (!id || !pwd) return;
+  hideModal('modal-link-student');
+  setTimeout(() => pushScreen('screen-eco-dash'), 100);
+}
+
+/* ─── Input listeners (enable confirm btn) ───────────── */
+function setupInputListeners() {
+  ['inputStudentId', 'inputStudentPwd'].forEach(elId => {
+    document.getElementById(elId).addEventListener('input', () => {
+      const a = document.getElementById('inputStudentId').value.trim();
+      const b = document.getElementById('inputStudentPwd').value.trim();
+      document.getElementById('btnConfirmLink').disabled = !(a && b);
+    });
+  });
+}
+
+/* ─── Toast ──────────────────────────────────────────── */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.opacity = '1';
+  t.style.transform = 'translateX(-50%) translateY(0)';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    t.style.opacity = '0';
+    t.style.transform = 'translateX(-50%) translateY(10px)';
+  }, 2200);
+}
+</script>
+</body>
+</html>

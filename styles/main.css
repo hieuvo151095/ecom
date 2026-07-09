@@ -1,21 +1,21 @@
 /* ═══════════════════════════════════════════════════
-   ECO Me — Main Styles
+   ECO Me — Main Styles (Monochrome)
    ═══════════════════════════════════════════════════ */
 
 /* ─── Variables ──────────────────────────────────── */
 :root {
-  --primary:          #FFB800;
-  --primary-dark:     #E6A300;
-  --primary-light:    #FFF8E1;
-  --orange:           #FF8C00;
-  --blue-dark:        #1565C0;
+  --primary:          #111111;
+  --primary-dark:     #000000;
+  --primary-light:    #f0f0f0;
+  --orange:           #444444;
+  --blue-dark:        #1a1a1a;
   --text:             #1a1a1a;
   --text-mid:         #555;
   --text-light:       #999;
   --bg:               #f5f5f5;
   --card:             #ffffff;
   --border:           #f0f0f0;
-  --alert:            #FF8C00;
+  --alert:            #555555;
   --screen-w:         390px;
   --screen-h:         780px;
   --status-h:         48px;
@@ -67,7 +67,7 @@ a       { text-decoration: none; color: inherit; }
 }
 .demo-btn.active {
   background: var(--primary);
-  color: #000;
+  color: #fff;
 }
 .demo-label {
   color: rgba(255,255,255,.4);
@@ -96,7 +96,7 @@ a       { text-decoration: none; color: inherit; }
     0 0 0 1px rgba(255,255,255,.1),
     0 0 0 3px #111,
     0 30px 80px rgba(0,0,0,.7),
-    0 0 60px rgba(255,184,0,.05);
+    0 0 60px rgba(255,255,255,.02);
 }
 
 /* Dynamic Island */
@@ -255,7 +255,7 @@ a       { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(255,184,0,.5);
+  box-shadow: 0 4px 14px rgba(0,0,0,.3);
   border: 3px solid #fff;
 }
 .nav-center-btn svg { width: 30px; height: 30px; stroke: none; }
@@ -299,7 +299,7 @@ a       { text-decoration: none; color: inherit; }
   right: -2px;
   width: 14px;
   height: 14px;
-  background: #4CAF50;
+  background: #111;
   border-radius: 50%;
   font-size: 8px;
   color: #fff;
@@ -336,7 +336,7 @@ a       { text-decoration: none; color: inherit; }
   position: absolute;
   top: 0;
   right: 0;
-  background: #e53935;
+  background: #111;
   color: #fff;
   font-size: 9px;
   font-weight: 700;
@@ -397,7 +397,7 @@ a       { text-decoration: none; color: inherit; }
   display: inline-block;
   padding: 8px 16px;
   background: #fff;
-  color: var(--orange);
+  color: #111;
   border-radius: 20px;
   font-size: 11px;
   font-weight: 800;
@@ -494,8 +494,8 @@ a       { text-decoration: none; color: inherit; }
    KYC BANNER
    ═══════════════════════════════════════════════════ */
 .kyc-banner {
-  background: #FFFDE7;
-  border: 1px solid #FFE082;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
   border-radius: 10px;
   padding: 10px 12px;
   display: flex;
@@ -508,7 +508,7 @@ a       { text-decoration: none; color: inherit; }
 .kyc-text {
   flex: 1;
   font-size: 12px;
-  color: #795548;
+  color: var(--text-mid);
   line-height: 1.5;
 }
 .kyc-arrow {
@@ -615,13 +615,13 @@ a       { text-decoration: none; color: inherit; }
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #e8eaf6;
+  background: #e8e8e8;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
   font-weight: 800;
-  color: #3949ab;
+  color: #333;
   flex-shrink: 0;
 }
 .hsc-body { flex: 1; }
@@ -693,7 +693,7 @@ a       { text-decoration: none; color: inherit; }
   position: absolute;
   top: 6px;
   left: 6px;
-  background: #e53935;
+  background: #333;
   color: #fff;
   font-size: 9px;
   font-weight: 800;
@@ -719,7 +719,7 @@ a       { text-decoration: none; color: inherit; }
 .voucher-exp { font-size: 11px; color: var(--text-light); }
 .btn-use {
   background: var(--primary);
-  color: #000;
+  color: #fff;
   font-size: 12px;
   font-weight: 700;
   padding: 7px 14px;
@@ -746,7 +746,7 @@ a       { text-decoration: none; color: inherit; }
   justify-content: center;
   font-size: 13px;
   font-weight: 800;
-  color: #c0392b;
+  color: #333;
   letter-spacing: .5px;
 }
 
@@ -795,7 +795,7 @@ a       { text-decoration: none; color: inherit; }
   position: absolute;
   top: 6px;
   left: 6px;
-  background: #e53935;
+  background: #333;
   color: #fff;
   font-size: 10px;
   font-weight: 800;
@@ -828,7 +828,7 @@ a       { text-decoration: none; color: inherit; }
   border-radius: 50%;
   font-size: 16px;
   font-weight: 700;
-  color: #000;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -877,7 +877,7 @@ a       { text-decoration: none; color: inherit; }
   backdrop-filter: blur(4px);
 }
 .eco-brand-banner {
-  background: linear-gradient(150deg, #FFB800 0%, #FF8C00 100%);
+  background: linear-gradient(150deg, #1a1a1a 0%, #3a3a3a 100%);
   padding: 50px 20px 40px;
   min-height: 280px;
   position: relative;
@@ -895,7 +895,7 @@ a       { text-decoration: none; color: inherit; }
   transform: translateX(-50%);
   width: 300px;
   height: 100px;
-  background: rgba(255,255,255,.1);
+  background: rgba(255,255,255,.06);
   border-radius: 50%;
 }
 .eco-brand-title {
@@ -903,12 +903,12 @@ a       { text-decoration: none; color: inherit; }
   font-weight: 900;
   color: #fff;
   letter-spacing: .5px;
-  text-shadow: 0 2px 4px rgba(0,0,0,.15);
+  text-shadow: 0 2px 4px rgba(0,0,0,.3);
   margin-bottom: 6px;
 }
 .eco-brand-sub {
   font-size: 12px;
-  color: rgba(255,255,255,.85);
+  color: rgba(255,255,255,.75);
   line-height: 1.5;
   margin-bottom: 20px;
 }
@@ -928,7 +928,7 @@ a       { text-decoration: none; color: inherit; }
   align-items: center;
   width: 100px;
 }
-.card-mock-logo { font-size: 11px; font-weight: 900; color: var(--orange); }
+.card-mock-logo { font-size: 11px; font-weight: 900; color: #111; }
 .card-mock-qr {
   font-size: 32px;
   line-height: 1;
@@ -966,9 +966,9 @@ a       { text-decoration: none; color: inherit; }
   font-weight: 800;
   flex-shrink: 0;
 }
-.step-1 { background: var(--primary); color: #000; }
-.step-2 { background: #FF8C00; color: #fff; }
-.step-3 { background: #e53935; color: #fff; }
+.step-1 { background: var(--primary); color: #fff; }
+.step-2 { background: #555; color: #fff; }
+.step-3 { background: #888; color: #fff; }
 .step-text { font-size: 13px; color: var(--text-mid); line-height: 1.5; padding-top: 3px; }
 
 .eco-reissue {
@@ -983,7 +983,7 @@ a       { text-decoration: none; color: inherit; }
    ECO SCHOOL — DASHBOARD
    ═══════════════════════════════════════════════════ */
 .eco-dash-header {
-  background: linear-gradient(150deg, #FFB800 0%, #FF8C00 100%);
+  background: linear-gradient(150deg, #1a1a1a 0%, #3a3a3a 100%);
   height: 52px;
   display: flex;
   align-items: center;
@@ -991,7 +991,7 @@ a       { text-decoration: none; color: inherit; }
   gap: 8px;
   flex-shrink: 0;
 }
-.eco-dash-header .back-btn { background: rgba(0,0,0,.15); color: #fff; }
+.eco-dash-header .back-btn { background: rgba(255,255,255,.15); color: #fff; }
 .eco-dash-title {
   flex: 1;
   font-size: 15px;
@@ -1003,7 +1003,7 @@ a       { text-decoration: none; color: inherit; }
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(0,0,0,.15);
+  background: rgba(255,255,255,.15);
   color: #fff;
   font-size: 14px;
   font-weight: 800;
@@ -1013,7 +1013,7 @@ a       { text-decoration: none; color: inherit; }
   cursor: pointer;
 }
 .eco-dash-brand {
-  background: linear-gradient(150deg, #FFB800 0%, #FF8C00 100%);
+  background: linear-gradient(150deg, #1a1a1a 0%, #3a3a3a 100%);
   padding: 12px 20px 20px;
   text-align: center;
 }
@@ -1031,13 +1031,13 @@ a       { text-decoration: none; color: inherit; }
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #e8eaf6;
+  background: #e8e8e8;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
   font-weight: 800;
-  color: #3949ab;
+  color: #333;
   flex-shrink: 0;
 }
 .student-info { flex: 1; }
@@ -1058,8 +1058,8 @@ a       { text-decoration: none; color: inherit; }
   margin-bottom: 6px;
 }
 .student-alert {
-  background: #FFF3E0;
-  border: 1px solid #FFE0B2;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 7px 10px;
   font-size: 12px;
@@ -1189,7 +1189,7 @@ a       { text-decoration: none; color: inherit; }
    ═══════════════════════════════════════════════════ */
 .btn-primary {
   background: var(--primary);
-  color: #000;
+  color: #fff;
   font-weight: 800;
   font-size: 15px;
   padding: 15px 24px;
